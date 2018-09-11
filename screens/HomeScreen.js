@@ -33,6 +33,10 @@ export default class HomeScreen extends React.Component {
     registerForPushNotificationsAsync();
     return (
       <View style={styles.container}>
+        <Switch
+          onValueChange={this._handleToggleSwitch}
+          value={this.state.switchValue}
+        />
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.welcomeContainer}>
             <Image
@@ -73,11 +77,6 @@ export default class HomeScreen extends React.Component {
             <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
           </View>
         </View>
-
-        <Switch
-          onValueChange={this._handleToggleSwitch}
-          value={this.state.switchValue}
-        />
       </View>
     );
   }
