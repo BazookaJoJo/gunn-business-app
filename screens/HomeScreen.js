@@ -25,7 +25,7 @@ export default class HomeScreen extends React.Component {
   //   this.setState(state => ({
   //     switchValue: !state.switchValue,
   //   }));
-    
+
   render() {
     // await AlertIOS.alert(
     //   'Please allow us to send push notifications',
@@ -34,10 +34,6 @@ export default class HomeScreen extends React.Component {
     registerForPushNotificationsAsync();
     return (
       <View style={styles.container}>
-        // <Switch
-        //   onValueChange={this._handleToggleSwitch}
-        //   value={this.state.switchValue}
-        // />
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.welcomeContainer}>
             <Image
