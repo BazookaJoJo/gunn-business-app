@@ -4,6 +4,7 @@ import {
   Platform,
   ScrollView,
   StyleSheet,
+  Switch,
   Text,
   TouchableOpacity,
   View,
@@ -17,8 +18,13 @@ import { MonoText } from '../components/StyledText';
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
+    switchValue: true,
   };
 
+  _handleToggleSwitch = () =>
+    this.setState(state => ({
+      switchValue: !state.switchValue,
+    }));
   render() {
     // await AlertIOS.alert(
     //   'Please allow us to send push notifications',
@@ -67,6 +73,11 @@ export default class HomeScreen extends React.Component {
             <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
           </View>
         </View>
+
+        <Switch
+          onValueChange={this._handleToggleSwitch}
+          value={this.state.switchValue}
+        />
       </View>
     );
   }
