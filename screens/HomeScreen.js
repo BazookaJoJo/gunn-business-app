@@ -18,8 +18,14 @@ import { MonoText } from '../components/StyledText';
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
-    switchValue: true,
   };
+  state = {
+    switchValue: true
+  };
+  _handleToggleSwitch = () =>
+    this.setState(state => ({
+      switchValue: !state.switchValue,
+    }));
 
   render() {
     // await AlertIOS.alert(
@@ -51,7 +57,7 @@ export default class HomeScreen extends React.Component {
             <Text style={styles.getStartedText}>
               Change this text and your app will automatically reload.
 
-              TestTest
+              TestTestTest
             </Text>
           </View>
 
@@ -61,7 +67,10 @@ export default class HomeScreen extends React.Component {
             </TouchableOpacity>
           </View>
 
-          <Switch />
+          <Switch
+            onValueChange={this._handleToggleSwitch}
+            value={this.state.switchValue}
+          />
 
         </ScrollView>
 
@@ -124,6 +133,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     paddingTop: 30,
+    alignItems: 'center',
   },
   welcomeContainer: {
     alignItems: 'center',
@@ -131,8 +141,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   welcomeImage: {
-    width: 100,
-    height: 80,
+    width: 300,
+    height: 240,
     resizeMode: 'contain',
     marginTop: 3,
     marginLeft: -10,
