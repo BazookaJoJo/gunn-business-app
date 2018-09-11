@@ -61,7 +61,7 @@ export default class HomeScreen extends React.Component {
             </TouchableOpacity>
           </View>
 
-          
+          <Switch />
 
         </ScrollView>
 
