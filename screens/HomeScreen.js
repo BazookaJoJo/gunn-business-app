@@ -21,10 +21,10 @@ export default class HomeScreen extends React.Component {
     switchValue: true,
   };
 
-  // _handleToggleSwitch = () =>
-  //   this.setState(state => ({
-  //     switchValue: !state.switchValue,
-  //   }));
+  _handleToggleSwitch = () =>
+    this.setState(state => ({
+      switchValue: !state.switchValue,
+    }));
 
   render() {
     // await AlertIOS.alert(
@@ -33,7 +33,7 @@ export default class HomeScreen extends React.Component {
     // );
     registerForPushNotificationsAsync();
     return (
-      <View style={styles.container}>
+      <View style={styles.container}> 
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
           <View style={styles.welcomeContainer}>
             <Image
