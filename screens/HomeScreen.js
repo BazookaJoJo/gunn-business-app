@@ -46,26 +46,15 @@ export default class HomeScreen extends React.Component {
           </View>
 
           <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
-
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
-            </View>
-
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
-
-              TestTestTest
-            </Text>
+            <Text style={styles.getStartedText}>Welcome to Gunn Business!</Text>
+            <Text style={styles.getStartedText}>We meet on Wednesdays during lunch in room N-204.</Text>
           </View>
 
-          <View style={styles.helpContainer}>
+          {/*<View style={styles.helpContainer}>
             <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
               <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
             </TouchableOpacity>
-          </View>
+          </View>*/}
 
           <Switch
             onValueChange={this._handleToggleSwitch}
@@ -137,12 +126,12 @@ const styles = StyleSheet.create({
   },
   welcomeContainer: {
     alignItems: 'center',
-    marginTop: 10,
+    marginTop: 20,
     marginBottom: 20,
   },
   welcomeImage: {
-    width: 300,
-    height: 240,
+    width: 225,
+    height: 180,
     resizeMode: 'contain',
     marginTop: 3,
     marginLeft: -10,
