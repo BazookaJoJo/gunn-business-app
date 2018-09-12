@@ -15,7 +15,7 @@ export default class LinksScreen extends React.Component {
   render() {
     return (
       <View style={styles.option}>
-        <Touchable
+        <Touchable style={styles.optionTouchable}
           id="Gunn"
           background={Touchable.Ripple('#ccc', false)}
           onPress={this._handleGunnBusinessWebsite}>
@@ -35,7 +35,7 @@ export default class LinksScreen extends React.Component {
             </View>
           </View>
         </Touchable>
-        <Touchable
+        <Touchable style={styles.optionTouchable}
           id="FBLA"
           background={Touchable.Ripple('#ccc', false)}
           onPress={this._handleFBLAWebsite}>
@@ -55,6 +55,26 @@ export default class LinksScreen extends React.Component {
             </View>
           </View>
         </Touchable>
+        <Touchable style={styles.optionTouchable}
+          id="DECA"
+          background={Touchable.Ripple('#ccc', false)}
+          onPress={this._handleDECAWebsite}>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={styles.optionIconContainer}>
+              <Image
+                source={require('../assets/images/deca.png')}
+                resizeMode="contain"
+                fadeDuration={0}
+                style={{ width: 20, height: 20, marginTop: 1 }}
+              />
+            </View>
+            <View style={styles.optionTextContainer}>
+              <Text style={styles.optionText}>
+                DECA Website
+              </Text>
+            </View>
+          </View>
+        </Touchable>
       </View>
     );
   }
@@ -64,6 +84,9 @@ export default class LinksScreen extends React.Component {
   _handleFBLAWebsite = () => {
     WebBrowser.openBrowserAsync('https://www.fbla-pbl.org');
   }
+  _handleDECAWebsite = () => {
+    WebBrowser.openBrowserAsync('https://www.deca.org');
+  }
 }
 
 const styles = StyleSheet.create({
@@ -71,6 +94,13 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 15,
     backgroundColor: '#fff',
+  },
+  optionTouchable: {
+    backgroundColor: '#fdfdfd',
+    paddingHorizontal: 0,
+    paddingVertical: 15,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#EDEDED'    
   },
   optionsTitleText: {
     fontSize: 16,
@@ -84,7 +114,7 @@ const styles = StyleSheet.create({
   option: {
     backgroundColor: '#fdfdfd',
     paddingHorizontal: 15,
-    paddingVertical: 15,
+    paddingVertical: 0,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: '#EDEDED',
   },
