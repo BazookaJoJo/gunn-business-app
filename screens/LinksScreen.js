@@ -14,8 +14,9 @@ export default class LinksScreen extends React.Component {
 
   render() {
     return (
-      <Touchable
-          style={styles.option}
+      <View style={styles.option}>
+        <Touchable
+          id="Gunn"
           background={Touchable.Ripple('#ccc', false)}
           onPress={this._handleGunnBusinessWebsite}>
           <View style={{ flexDirection: 'row' }}>
@@ -34,10 +35,34 @@ export default class LinksScreen extends React.Component {
             </View>
           </View>
         </Touchable>
+        <Touchable
+          id="FBLA"
+          background={Touchable.Ripple('#ccc', false)}
+          onPress={this._handleFBLAWebsite}>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={styles.optionIconContainer}>
+              <Image
+                source={require('../assets/images/fbla.png')}
+                resizeMode="contain"
+                fadeDuration={0}
+                style={{ width: 20, height: 20, marginTop: 1 }}
+              />
+            </View>
+            <View style={styles.optionTextContainer}>
+              <Text style={styles.optionText}>
+                FBLA Website
+              </Text>
+            </View>
+          </View>
+        </Touchable>
+      </View>
     );
   }
   _handleGunnBusinessWebsite = () => {
     WebBrowser.openBrowserAsync('https://www.gunnbusiness.com');
+  }
+  _handleFBLAWebsite = () => {
+    WebBrowser.openBrowserAsync('https://www.fbla-pbl.org');
   }
 }
 
