@@ -56,7 +56,7 @@ export default class HomeScreen extends React.Component {
             </TouchableOpacity>
           </View>*/}
 
-          <Switch
+          <Switch style={styles.switchStyle}
             onValueChange={this._handleToggleSwitch}
             value={this.state.switchValue}
           />
@@ -101,6 +101,9 @@ export default class HomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  switchStyle: {
+    marginTop: 20,
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
