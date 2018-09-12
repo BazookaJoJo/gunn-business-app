@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Linking, ScrollView, StyleSheet, Image, Text, View } from 'react-native';
 import Touchable from 'react-native-platform-touchable';
-import {WebBrowser} from 'expo';
+import { WebBrowser } from 'expo';
 
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
@@ -31,6 +31,46 @@ export default class LinksScreen extends React.Component {
             <View style={styles.optionTextContainer}>
               <Text style={styles.optionText}>
                 Gunn Business Website
+              </Text>
+            </View>
+          </View>
+        </Touchable>
+        <Touchable style={styles.optionTouchable}
+          id="Facebook"
+          background={Touchable.Ripple('#ccc', false)}
+          onPress={this._handleFacebookGroup}>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={styles.optionIconContainer}>
+              <Image
+                source={require('../assets/images/facebook.png')}
+                resizeMode="contain"
+                fadeDuration={0}
+                style={{ width: 20, height: 20, marginTop: 1 }}
+              />
+            </View>
+            <View style={styles.optionTextContainer}>
+              <Text style={styles.optionText}>
+                Join our official Facebook group!
+              </Text>
+            </View>
+          </View>
+        </Touchable>
+        <Touchable style={styles.optionTouchable}
+          id="Instagram"
+          background={Touchable.Ripple('#ccc', false)}
+          onPress={this._handleInstagramPage}>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={styles.optionIconContainer}>
+              <Image
+                source={require('../assets/images/instagram.png')}
+                resizeMode="contain"
+                fadeDuration={0}
+                style={{ width: 20, height: 20, marginTop: 1 }}
+              />
+            </View>
+            <View style={styles.optionTextContainer}>
+              <Text style={styles.optionText}>
+                Follow our Instagram page
               </Text>
             </View>
           </View>
@@ -78,15 +118,39 @@ export default class LinksScreen extends React.Component {
       </View>
     );
   }
+
   _handleGunnBusinessWebsite = () => {
     WebBrowser.openBrowserAsync('https://www.gunnbusiness.com');
-  }
+  };
+
+  _handleFacebookGroup = () => {
+    Linking.canOpenURL('fb://group?id=198558314147440').then(supported => {
+      if (supported) {
+        Linking.openURL('fb://group?id=198558314147440');
+      } else {
+        WebBrowser.openBrowserAsync('https://www.facebook.com/groups/198558314147440')
+      }
+    });
+  };
+
+  _handleInstagramPage = () => {
+    Linking.canOpenURL('instagam://user?username=gunnbusiness').then(supported => {
+      if (supported) {
+        Linking.openURL('instagam://user?username=gunnbusiness');
+      } else {
+        WebBrowser.openBrowserAsync('https://www.instagram.com/gunnbusiness')
+      }
+    });
+  };
+
   _handleFBLAWebsite = () => {
     WebBrowser.openBrowserAsync('https://www.fbla-pbl.org');
-  }
+  };
+
   _handleDECAWebsite = () => {
     WebBrowser.openBrowserAsync('https://www.deca.org');
   }
+
 }
 
 const styles = StyleSheet.create({
