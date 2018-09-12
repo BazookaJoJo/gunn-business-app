@@ -16,26 +16,6 @@ export default class LinksScreen extends React.Component {
     return (
       <View style={styles.option}>
         <Touchable style={styles.optionTouchable}
-          id="Gunn"
-          background={Touchable.Ripple('#ccc', false)}
-          onPress={this._handleGunnBusinessWebsite}>
-          <View style={{ flexDirection: 'row' }}>
-            <View style={styles.optionIconContainer}>
-              <Image
-                source={require('../assets/images/gunnbusiness.png')}
-                resizeMode="contain"
-                fadeDuration={0}
-                style={{ width: 20, height: 20, marginTop: 1 }}
-              />
-            </View>
-            <View style={styles.optionTextContainer}>
-              <Text style={styles.optionText}>
-                Gunn Business Website
-              </Text>
-            </View>
-          </View>
-        </Touchable>
-        <Touchable style={styles.optionTouchable}
           id="Facebook"
           background={Touchable.Ripple('#ccc', false)}
           onPress={this._handleFacebookGroup}>
@@ -70,7 +50,27 @@ export default class LinksScreen extends React.Component {
             </View>
             <View style={styles.optionTextContainer}>
               <Text style={styles.optionText}>
-                Follow our Instagram page
+                Follow our Instagram page!
+              </Text>
+            </View>
+          </View>
+        </Touchable>
+        <Touchable style={styles.optionTouchable}
+          id="Gunn"
+          background={Touchable.Ripple('#ccc', false)}
+          onPress={this._handleGunnBusinessWebsite}>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={styles.optionIconContainer}>
+              <Image
+                source={require('../assets/images/gunnbusiness.png')}
+                resizeMode="contain"
+                fadeDuration={0}
+                style={{ width: 20, height: 20, marginTop: 1 }}
+              />
+            </View>
+            <View style={styles.optionTextContainer}>
+              <Text style={styles.optionText}>
+                Gunn Business Website
               </Text>
             </View>
           </View>
