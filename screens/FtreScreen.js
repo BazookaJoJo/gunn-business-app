@@ -12,7 +12,8 @@ export default class FtreScreen extends Component {
     super(props);
     this.state = {
       modalVisible: true,
-      text: ""
+      name: "",
+      email: "",
     };
   }
   componentDidMount() {
@@ -30,9 +31,20 @@ export default class FtreScreen extends Component {
     AsyncStorage.setItem(this.props.pagekey, JSON.stringify({"value":"true"}), (err,result) => {
             console.log("error",err,"result",result);
             });
+    AsyncStorage.getItem('name').then((value) => this.setState({'name': value }))
+    AsyncStorage.getItem('email').then((value) => this.setState({'email': value }))
   }
+
   setModalVisible(visible) {
     this.setState({ modalVisible: visible });
+  }
+  setName = (value) => {
+      AsyncStorage.setItem('name', value);
+      this.setState({ 'name': value });
+  }
+  setEmail = (value) => {
+      AsyncStorage.setItem('email', value);
+      this.setState({ 'email': value });
   }
   render() {
     return (
@@ -52,13 +64,26 @@ export default class FtreScreen extends Component {
             </View>
             <View style={styles.ftreDescriptionContainer}>
               <Text style={styles.ftreDescription} allowFontScaling={true}>
-                First Name
+                Full Name
               </Text>
               <TextInput
                 style={{height:30, borderColor: 'gray', borderWidth: 1, marginHorizontal: 20}}
-                onChangeText={(text) => this.setState({text})}
-                value={this.state.text}
+                onChangeText={this.setName}
               />
+              <Text>
+                {this.state.name}
+              </Text>
+
+              <Text style={styles.ftreDescription} allowFontScaling={true}>
+                E-mail
+              </Text>
+              <TextInput
+                style={{height:30, borderColor: 'gray', borderWidth: 1, marginHorizontal: 20}}
+                onChangeText={this.setEmail}
+              />
+              <Text>
+                {this.state.email}
+              </Text>
             </View>
             <View style={styles.ftreExitContainer}>
               <TouchableHighlight
@@ -123,7 +148,7 @@ ftreContainer:{
 	ftreExitButtonContainer:{
 		width:200,
 		height:40,
-		backgroundColor:'823837',
+		backgroundColor:'#823837',
 		borderRadius:10,
 		justifyContent:'center',
 	},

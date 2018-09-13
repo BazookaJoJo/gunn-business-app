@@ -1,7 +1,7 @@
 import React from 'react';
 import { ExpoConfigView } from '@expo/samples';
 import FtreScreen from '../screens/FtreScreen';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'app.json',
@@ -13,6 +13,7 @@ export default class SettingsScreen extends React.Component {
     return (
     	<View>
           <FtreScreen pagekey={"firstTimeSetup"} title={"Welcome to the Gunn Business App!"}/>
+          <Text> abcd </Text>
       </View>
     );
   }
