@@ -13,6 +13,10 @@ export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'Settings',
   };
+  _handleExit = () =>
+    this.setState(state => ({
+      modalVisible: !state.modalVisible,
+    }));
   constructor(props) {
     super(props);
     this.props.pagekey = "firstTimeSetup";
@@ -64,6 +68,7 @@ export default class SettingsScreen extends React.Component {
 	          visible={this.state.modalVisible}
 	          onRequestClose={() => {
 	            alert("Modal has been closed.");
+	            this._handleExit;
 	          }}
 	        >
 	          <View style={styles.ftreContainer}>
