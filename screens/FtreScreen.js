@@ -99,6 +99,7 @@ export default class FtreScreen extends Component {
           </View>
         </Modal>
       </View>
+
     );
   }
 }

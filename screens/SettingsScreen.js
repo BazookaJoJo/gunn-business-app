@@ -10,6 +10,9 @@ import {
 } from "react-native";
 
 export default class SettingsScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Settings',
+  };
   constructor(props) {
     super(props);
     this.props.pagekey = "firstTimeSetup";
@@ -55,7 +58,7 @@ export default class SettingsScreen extends React.Component {
       <View style={styles.container}>
 	      <View>
 	        <Modal
-	          animationType={"slide"}
+	          animationType={"none"}
 	          transparent={true}
 	          style={styles.ftreContainer}
 	          visible={this.state.modalVisible}
@@ -137,7 +140,6 @@ ftreContainer:{
     	backgroundColor: '#fdfdfd',
     },
 	infoContainer: {
-    	flex: 1,
     	backgroundColor: '#fdfdfd',
     	marginTop: 30,
 
