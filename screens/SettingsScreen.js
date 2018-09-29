@@ -2,6 +2,7 @@
 import React, { Component, PropTypes } from "react";
 import {
   AsyncStorage,
+  Button,
   Modal,
   View,
   Text,
@@ -11,28 +12,19 @@ import {
 import Touchable from 'react-native-platform-touchable';
 
 export default class SettingsScreen extends React.Component {
-  static navigationOptions = {
-    title: 'Settings',
-  };
-  _handleExit = () => {
-      AsyncStorage.setItem('modalVisible', JSON.stringify(false));
-      this.setState({ 'modalVisible': JSON.stringify(false) });
-  }
-  _handleEdit = () => {
-  		AsyncStorage.setItem('modalVisible', JSON.stringify(true));
-  		this.setState({'modalVisible': JSON.stringify(true)});
-
-  }
-  constructor(props) {
-    super(props);
-    this.props.pagekey = "firstTimeSetup";
-    this.props.title = "Welcome to the Gunn Business App!"
-    this.state = {
-      modalVisible: JSON.stringify(false),
-      name: "Name",
-      email: "Email",
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: <Text style={styles.title}> Settings </Text>,
+      headerRight: (
+        <Button 
+          onPress={navigation.getParam('handleEdit')}
+          title="Edit Profile"
+          color="b"
+        />
+      ),
     };
-  }
+  };
+/////////////
   componentDidMount() {
     AsyncStorage.getItem(this.props.pagekey, (err, result) => {
       if (err) {
@@ -51,6 +43,25 @@ export default class SettingsScreen extends React.Component {
     AsyncStorage.getItem('name').then((value) => this.setState({'name': value }));
     AsyncStorage.getItem('email').then((value) => this.setState({'email': value }));
     AsyncStorage.getItem('modalVisible').then((value) => this.setState({'modalVisible': value }));
+    this.props.navigation.setParams({ handleEdit: this._handleEdit });
+  }
+  _handleExit = () => {
+      AsyncStorage.setItem('modalVisible', JSON.stringify(false));
+      this.setState({ 'modalVisible': JSON.stringify(false) });
+  }
+  _handleEdit = () => {
+  		this.setState({'modalVisible': JSON.stringify(true)});
+
+  }
+  constructor(props) {
+    super(props);
+    this.props.pagekey = "firstTimeSetup";
+    this.props.title = "Welcome to the Gunn Business App!"
+    this.state = {
+      modalVisible: JSON.stringify(false),
+      name: "Name",
+      email: "Email",
+    };
   }
 
   setModalVisible(visible) {
@@ -131,30 +142,23 @@ export default class SettingsScreen extends React.Component {
       			{this.state.email}
       		</Text>
       	  </View>
-      	  <Touchable style={styles.optionTouchable}
-	          id="Edit"
-	          background={Touchable.Ripple('#ccc', false)}
-	          onPress={this._handleEdit}>
-	          <View style={{ flexDirection: 'row' }}>
-	            <View style={styles.optionTextContainer}>
-	              <Text style={styles.optionText}>
-	                Edit your profile
-	              </Text>
-	            </View>
-	          </View>
-        	</Touchable>
       	</View>
     );
   }
 }
-
+///////
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-ftreContainer:{
+	ftreContainer:{
 		backgroundColor:'#fdfdfd',
 		flex:1,
 		borderColor:'#823837',
+	},
+	title:{
+		fontSize: 17,
+		color:'b',
+		fontWeight:'600',
 	},
 	font: {
 		fontSize: 15,
