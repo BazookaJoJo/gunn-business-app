@@ -101,6 +101,7 @@ export default class SettingsScreen extends React.Component {
 	              <TextInput
 	                style={{height:30, borderColor: 'gray', borderWidth: 1, marginHorizontal: 20}}
 	                onChangeText={this.setName}
+	                value={this.state.name}
 	              />
 
 	              <Text style={styles.ftreDescription} allowFontScaling={true}>
@@ -109,6 +110,7 @@ export default class SettingsScreen extends React.Component {
 	              <TextInput
 	                style={{height:30, borderColor: 'gray', borderWidth: 1, marginHorizontal: 20}}
 	                onChangeText={this.setEmail}
+	                value={this.state.email}
 	              />
 	            </View>
 	            <View style={styles.ftreExitContainer}>
