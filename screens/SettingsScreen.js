@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableHighlight
 } from "react-native";
+import Touchable from 'react-native-platform-touchable';
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = {
@@ -16,6 +17,11 @@ export default class SettingsScreen extends React.Component {
   _handleExit = () => {
       AsyncStorage.setItem('modalVisible', JSON.stringify(false));
       this.setState({ 'modalVisible': JSON.stringify(false) });
+  }
+  _handleEdit = () => {
+  		AsyncStorage.setItem('modalVisible', JSON.stringify(true));
+  		this.setState({'modalVisible': JSON.stringify(true)});
+
   }
   constructor(props) {
     super(props);
@@ -125,6 +131,18 @@ export default class SettingsScreen extends React.Component {
       			{this.state.email}
       		</Text>
       	  </View>
+      	  <Touchable style={styles.optionTouchable}
+	          id="Edit"
+	          background={Touchable.Ripple('#ccc', false)}
+	          onPress={this._handleEdit}>
+	          <View style={{ flexDirection: 'row' }}>
+	            <View style={styles.optionTextContainer}>
+	              <Text style={styles.optionText}>
+	                Edit your profile
+	              </Text>
+	            </View>
+	          </View>
+        	</Touchable>
       	</View>
     );
   }
