@@ -13,16 +13,16 @@ export default class SettingsScreen extends React.Component {
   static navigationOptions = {
     title: 'Settings',
   };
-  _handleExit = () =>
-    this.setState(state => ({
-      modalVisible: !state.modalVisible,
-    }));
+  _handleExit = () => {
+      AsyncStorage.setItem('modalVisible', JSON.stringify(false));
+      this.setState({ 'modalVisible': JSON.stringify(false) });
+  }
   constructor(props) {
     super(props);
     this.props.pagekey = "firstTimeSetup";
     this.props.title = "Welcome to the Gunn Business App!"
     this.state = {
-      modalVisible: true,
+      modalVisible: JSON.stringify(false),
       name: "Name",
       email: "Email",
     };
@@ -42,12 +42,14 @@ export default class SettingsScreen extends React.Component {
     AsyncStorage.setItem(this.props.pagekey, JSON.stringify({"value":"true"}), (err,result) => {
             console.log("error",err,"result",result);
             });
-    AsyncStorage.getItem('name').then((value) => this.setState({'name': value }))
-    AsyncStorage.getItem('email').then((value) => this.setState({'email': value }))
+    AsyncStorage.getItem('name').then((value) => this.setState({'name': value }));
+    AsyncStorage.getItem('email').then((value) => this.setState({'email': value }));
+    AsyncStorage.getItem('modalVisible').then((value) => this.setState({'modalVisible': value }));
   }
 
   setModalVisible(visible) {
-    this.setState({ modalVisible: visible });
+  	AsyncStorage.setItem('modalVisible', JSON.stringify(visible));
+    this.setState({ 'modalVisible': JSON.stringify(visible) });
   }
   setName = (value) => {
       AsyncStorage.setItem('name', value);
@@ -65,7 +67,7 @@ export default class SettingsScreen extends React.Component {
 	          animationType={"none"}
 	          transparent={true}
 	          style={styles.ftreContainer}
-	          visible={this.state.modalVisible}
+	          visible={JSON.parse(this.state.modalVisible)}
 	          onRequestClose={() => {
 	            alert("Modal has been closed.");
 	            this._handleExit;
