@@ -54,6 +54,7 @@ export default class SettingsScreen extends React.Component {
       pemailError: "none",
       phoneError: "none",
       genderError: "none",
+      gradeError: "none",
       grade: "",
       gender: "",
       pemail: "",
@@ -325,7 +326,9 @@ export default class SettingsScreen extends React.Component {
     (this.state.grade!=null) ? this.setState({gradeError: "none"}) : this.setState({gradeError: "flex"});
     (this.state.gender!=null) ? this.setState({genderError: "none"}) : this.setState({genderError: "flex"});
     // this.setState({Error: "flex"})
-    // this.setModalVisible(!this.state.modalVisible);
+    if(this.state.nameError=="none" && this.state.emailError=="none" && this.state.pemailError=="none" && this.state.phoneError=="none" && this.state.gradeError=="none" && this.state.genderError=="none"){
+    	this._handleExit();
+	}
   };
 
   
