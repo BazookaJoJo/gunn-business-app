@@ -358,13 +358,13 @@ const styles = StyleSheet.create({
   },
   ftreTitleContainer: {
     paddingTop: 30,
-    flex: 0.1,
+    flex: 0.15,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center"
   },
   ftreInstructionsContainer: {
-    flex: 0.5,
+    flex: 0.05,
   },
   ftreInstructions: {
     fontWeight: "500",
@@ -375,13 +375,15 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   ftreDescriptionContainer: {
-    flex: 1000,
+    flex: .55,
     marginTop: 0
   },
   ftreExitContainer: {
-    flex: 1,
+    flex: 0.15,
     justifyContent: "flex-start",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: "white",
+    padding: 10
   },
   ftreExitButtonContainer: {
     width: 200,
