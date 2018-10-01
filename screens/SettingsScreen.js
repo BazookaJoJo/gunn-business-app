@@ -16,7 +16,7 @@ import {
 } from "react-native";
 import Touchable from "react-native-platform-touchable";
 import RNPickerSelect from 'react-native-picker-select';
-import { Icon } from "expo";
+import { Icon, Constants } from "expo";
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -349,7 +349,32 @@ export default class SettingsScreen extends React.Component {
     // this.setState({Error: "flex"})
     if((this.validName(this.state.name)) && (this.validEmail(this.state.email)) && (this.validEmail(this.state.pemail)) && (this.validPhone(this.state.phone)) && (this.state.grade!=null) && (this.state.gender!=null)){
     	this._handleExit();
-	}
+
+		  let pushToken = await Notifications.getExpoPushTokenAsync();
+
+			fetch('https://178.128.75.182/update', {
+				method: 'POST',
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					deviceId: Constants.installationId,
+					pushToken: pushToken,
+					name: this.state.name,
+					grade: parseInt(this.state.grade),
+					gender: this.state.gender,
+					email: this.state.email,
+					pemail: this.state.pemail,
+					phone: String(this.state.phone),
+
+					deviceName: Constants.deviceName,
+					deviceYear: Constants.deviceYearClass,
+					platform: JSON.stringify(Constants.platform),
+					ownership: Constants.appOwnership,
+				})
+			})
+		}
   };
 
   

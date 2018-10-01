@@ -2,7 +2,7 @@ import { Permissions, Notifications, Alert, Constants } from 'expo';
 import { AlertIOS } from 'react-native';
 
 // const PUSH_ENDPOINT = 'http://192.168.1.5:5000/register';
-const PUSH_ENDPOINT = 'http://178.128.75.182/register';
+const PUSH_ENDPOINT = 'https://178.128.75.182/register';
 
 export async function registerForPushNotificationsAsync() {
   const { status: existingStatus } = await Permissions.getAsync(
@@ -21,8 +21,8 @@ export async function registerForPushNotificationsAsync() {
         // install, so this will only ask on iOS
         const { status } = Permissions.askAsync(Permissions.NOTIFICATIONS);
         finalStatus = status;
-        AlertIOS.alert(
-          finalStatus)
+        // AlertIOS.alert(
+        //   finalStatus)
       }
     );
   }
