@@ -213,9 +213,9 @@ export default class SettingsScreen extends React.Component {
                     // onDownArrow={() => {
                     //     this.inputRefs.picker2.togglePicker();
                     // }}
-                    style={{ ...styles }}
+                    style={{inputIOS: [{color: 'black'}, styles.textBox]}}
                     value={this.state.gender}
-                    hideIcon='true'
+                    hideIcon={true}
                     ref={(el) => {
                         this.inputRefs.picker = el;
                     }}
@@ -269,17 +269,6 @@ export default class SettingsScreen extends React.Component {
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
-	inputIOS: {
-    height: 30,
-    borderColor: "gray",
-    borderWidth: 1,
-    padding: 6,
-    marginTop: 8,
-    marginBottom: 8,
-    marginHorizontal: 20,
-    borderRadius: 4,
-    color: "black"
-  },
   textBox: {
     height: 30,
     borderColor: "gray",
