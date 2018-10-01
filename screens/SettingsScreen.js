@@ -215,6 +215,7 @@ export default class SettingsScreen extends React.Component {
                     // }}
                     style={{ ...styles }}
                     value={this.state.gender}
+                    hideIcon='true'
                     ref={(el) => {
                         this.inputRefs.picker = el;
                     }}
