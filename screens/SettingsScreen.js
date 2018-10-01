@@ -201,7 +201,7 @@ export default class SettingsScreen extends React.Component {
                         value: null,
                     }}
                     items={[
-                    	{ label: 'Male', value: 'female' },
+                    	{ label: 'Male', value: 'male' },
                     	{ label: 'Female', value: 'female' }
                     ]}
                     onValueChange={(value) => {
@@ -213,7 +213,7 @@ export default class SettingsScreen extends React.Component {
                     // onDownArrow={() => {
                     //     this.inputRefs.picker2.togglePicker();
                     // }}
-                    style={StyleSheet.flatten(styles.textBox)}
+                    style={{ ...styles }}
                     value={this.state.gender}
                     ref={(el) => {
                         this.inputRefs.picker = el;
@@ -268,6 +268,16 @@ export default class SettingsScreen extends React.Component {
 import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
+	inputIOS: {
+    height: 30,
+    borderColor: "gray",
+    borderWidth: 1,
+    padding: 6,
+    marginTop: 8,
+    marginBottom: 8,
+    marginHorizontal: 20,
+    borderRadius: 4
+  },
   textBox: {
     height: 30,
     borderColor: "gray",
