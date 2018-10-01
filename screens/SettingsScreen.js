@@ -16,7 +16,7 @@ import {
 } from "react-native";
 import Touchable from "react-native-platform-touchable";
 import RNPickerSelect from 'react-native-picker-select';
-import { Icon, Constants } from "expo";
+import { Icon, Constants, Notifications } from "expo";
 
 export default class SettingsScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -136,7 +136,7 @@ export default class SettingsScreen extends React.Component {
                     returnKeyType="next"
                     enablesReturnKeyAutomatically
                     onSubmitEditing={() => {
-                        this.inputRefs.grade.togglePicker();
+                        this.inputRefs.email.focus();
                     }}
                     onChangeText={(value) => {
                     	AsyncStorage.setItem('name', value);
@@ -160,7 +160,7 @@ export default class SettingsScreen extends React.Component {
                     returnKeyType="next"
                     enablesReturnKeyAutomatically
                     onSubmitEditing={() => {
-                        this.inputRefs.pemail.focus();
+                        this.inputRefs.phone.focus();
                     }}
                     onChangeText={(value) => {
                     	AsyncStorage.setItem('email', value);
@@ -178,11 +178,15 @@ export default class SettingsScreen extends React.Component {
                     ref={(el) => {
                         this.inputRefs.phone = el;
                     }}
-	                style={styles.textBox}
-	                value={this.state.phone}
-	                keyboardType="phone-pad"
-	                returnKeyType="done"
-	                onChangeText={(value) => {
+		                style={styles.textBox}
+		                value={this.state.phone}
+		                keyboardType="phone-pad"
+                    returnKeyType="done"
+                    // enablesReturnKeyAutomatically
+                    // onSubmitEditing={() => {
+                    //     this.inputRefs.grade.togglePicker();
+                    // }}
+		                onChangeText={(value) => {
 	                  AsyncStorage.setItem('phone', value);
 	                  this.setState({ 'phone': value });
                     }}
@@ -213,10 +217,10 @@ export default class SettingsScreen extends React.Component {
                         this.setState({ 'grade': value });
                     }}
                     onUpArrow={() => {
-                        this.inputRefs.name.focus();
+                        this.inputRefs.phone.focus();
                     }}
                     onDownArrow={() => {
-                        this.inputRefs.email.focus();
+                        this.inputRefs.gender.togglePicker();
                     }}
                     style={{inputIOS: [{color: 'black'}, styles.textBox]}}
                     value={this.state.grade}
@@ -246,11 +250,11 @@ export default class SettingsScreen extends React.Component {
                         this.setState({ 'gender': value });
                     }}
                     onUpArrow={() => {
-                        this.inputRefs.phone.focus();
+                        this.inputRefs.grade.togglePicker();
                     }}
-                    // onDownArrow={() => {
-                    //     this.inputRefs.picker2.togglePicker();
-                    // }}
+                    onDownArrow={() => {
+                        this.inputRefs.pemail.focus();
+                    }}
                     style={{inputIOS: [{color: 'black'}, styles.textBox]}}
                     value={this.state.gender}
                     hideIcon={true}
@@ -269,11 +273,7 @@ export default class SettingsScreen extends React.Component {
 	                  style={styles.textBox}
 	                  value={this.state.pemail}
 	                  keyboardType="email-address"
-                    returnKeyType="next"
-                    enablesReturnKeyAutomatically
-                    onSubmitEditing={() => {
-                        this.inputRefs.phone.focus();
-                    }}
+                    returnKeyType="done"
                     onChangeText={(value) => {
                     	AsyncStorage.setItem('pemail', value);
                         this.setState({ 'pemail': value });
@@ -350,7 +350,7 @@ export default class SettingsScreen extends React.Component {
     if((this.validName(this.state.name)) && (this.validEmail(this.state.email)) && (this.validEmail(this.state.pemail)) && (this.validPhone(this.state.phone)) && (this.state.grade!=null) && (this.state.gender!=null)){
     	this._handleExit();
 
-		  let pushToken = await Notifications.getExpoPushTokenAsync();
+		  let pushToken = Notifications.getExpoPushTokenAsync();
 
 			fetch('https://178.128.75.182/update', {
 				method: 'POST',
