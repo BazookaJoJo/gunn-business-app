@@ -109,7 +109,7 @@ export default class SettingsScreen extends React.Component {
 	                <Text style={styles.ftreTitle}>{this.state.title}</Text>
 	              </View>
 	              <View style={styles.ftreInstructionsContainer}>
-	                <Text style={styles.ftreDescription} allowFontScaling={true}>
+	                <Text style={styles.ftreInstructions} allowFontScaling={true}>
 	                  Please enter the following information for us.
 	                </Text>
 	              </View>
@@ -164,7 +164,7 @@ export default class SettingsScreen extends React.Component {
                     hideIcon={true}
                 	/>
 	                <ErrorMessage style={{ display: this.state.genderError, marginLeft: 20 }}>
-	                  Please choose a gender.
+	                  Please choose a grade.
 	                </ErrorMessage>
 
 	                <Text style={styles.ftreDescription} allowFontScaling={true}>
@@ -306,7 +306,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 6,
     marginTop: 8,
-    marginBottom: 8,
+    marginBottom: 0,
     marginHorizontal: 20,
     borderRadius: 4
   },
@@ -358,7 +358,15 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   ftreInstructionsContainer: {
-    flex: 0.5
+    flex: 0.5,
+  },
+  ftreInstructions: {
+    fontWeight: "500",
+    color: "#823837",
+    fontSize: 16,
+    marginRight: 20,
+    marginLeft: 20,
+    marginTop: 4,
   },
   ftreDescriptionContainer: {
     flex: 6.5,
