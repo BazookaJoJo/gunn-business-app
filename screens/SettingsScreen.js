@@ -126,11 +126,45 @@ export default class SettingsScreen extends React.Component {
                     returnKeyType="next"
                     enablesReturnKeyAutomatically
                     onSubmitEditing={() => {
-                        this.inputRefs.email.focus();
+                        this.inputRefs.grade.togglePicker();
                     }}
 	                />
 	                <ErrorMessage style={{ display: this.state.nameError, marginLeft: 20 }}>
 	                  Please enter your full name.
+	                </ErrorMessage>
+
+	                <Text style={styles.ftreDescription} allowFontScaling={true}>
+	                  Grade
+	                </Text>
+	                <RNPickerSelect
+                    ref={(el) => {
+                        this.inputRefs.grade = el;
+                    }}
+                    placeholder={{
+                        label: 'Select a grade',
+                        value: null,
+                    }}
+                    items={[
+                    	{ label: '9', value: '9' },
+                    	{ label: '10', value: '10' },
+                    	{ label: '11', value: '11' },
+                    	{ label: '12', value: '12' }
+                    ]}
+                    onValueChange={(value) => {
+                        this.setState({ grade: value });
+                    }}
+                    onUpArrow={() => {
+                        this.inputRefs.name.focus();
+                    }}
+                    onDownArrow={() => {
+                        this.inputRefs.email.focus();
+                    }}
+                    style={{inputIOS: [{color: 'black'}, styles.textBox]}}
+                    value={this.state.grade}
+                    hideIcon={true}
+                	/>
+	                <ErrorMessage style={{ display: this.state.genderError, marginLeft: 20 }}>
+	                  Please choose a gender.
 	                </ErrorMessage>
 
 	                <Text style={styles.ftreDescription} allowFontScaling={true}>
@@ -216,10 +250,7 @@ export default class SettingsScreen extends React.Component {
                     style={{inputIOS: [{color: 'black'}, styles.textBox]}}
                     value={this.state.gender}
                     hideIcon={true}
-                    ref={(el) => {
-                        this.inputRefs.picker = el;
-                    }}
-                />
+                	/>
 	                <ErrorMessage style={{ display: this.state.genderError, marginLeft: 20 }}>
 	                  Please choose a gender.
 	                </ErrorMessage>
