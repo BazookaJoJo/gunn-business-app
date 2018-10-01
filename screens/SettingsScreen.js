@@ -349,7 +349,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginRight: 20,
     marginLeft: 20,
-    marginTop: 16
+    paddingTop: 10
   },
   ftreCloseIcon: {
     alignSelf: "flex-end",
@@ -358,13 +358,15 @@ const styles = StyleSheet.create({
   },
   ftreTitleContainer: {
     paddingTop: 30,
-    flex: 0.15,
+    flex: 0.05,
     flexDirection: "row",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    marginTop: 15
   },
   ftreInstructionsContainer: {
     flex: 0.05,
+    marginBottom: 15
   },
   ftreInstructions: {
     fontWeight: "500",
@@ -372,7 +374,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginRight: 20,
     marginLeft: 20,
-    marginTop: 4,
+    textAlign: "center"
   },
   ftreDescriptionContainer: {
     flex: .55,
