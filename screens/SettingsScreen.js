@@ -21,11 +21,11 @@ import { Icon } from "expo";
 export default class SettingsScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      headerTitle: <Text style={styles.title}> Settings </Text>,
+      headerTitle: <Text style={styles.title}> Profile </Text>,
       headerRight: (
         <Button
           onPress={navigation.getParam("handleEdit")}
-          title="Edit Profile"
+          title="Edit"
           // color="b"
         />
       )
@@ -86,6 +86,8 @@ export default class SettingsScreen extends React.Component {
     AsyncStorage.getItem("email").then(value => this.setState({ email: value }));
     AsyncStorage.getItem("pemail").then(value => this.setState({ pemail: value }));
     AsyncStorage.getItem("phone").then(value => this.setState({ phone: value }));
+    AsyncStorage.getItem("gender").then(value => this.setState({ gender: value }));
+    AsyncStorage.getItem("grade").then(value => this.setState({ grade: value }));
     AsyncStorage.getItem("modalVisible").then(value =>
       this.setState({ modalVisible: value })
     );
@@ -141,9 +143,52 @@ export default class SettingsScreen extends React.Component {
                         this.setState({ 'name': value });
                     }}
 	                />
-
 	                <ErrorMessage style={{ display: this.state.nameError, marginLeft: 20 }}>
 	                  Please enter your full name.
+	                </ErrorMessage>
+
+	                <Text style={styles.ftreDescription} allowFontScaling={true}>
+	                  Your e-mail
+	                </Text>
+	                <TextInput
+                    ref={(el) => {
+                        this.inputRefs.email = el;
+                    }}
+	                  style={styles.textBox}
+	                  value={this.state.email}
+	                  keyboardType="email-address"
+                    returnKeyType="next"
+                    enablesReturnKeyAutomatically
+                    onSubmitEditing={() => {
+                        this.inputRefs.pemail.focus();
+                    }}
+                    onChangeText={(value) => {
+                    	AsyncStorage.setItem('email', value);
+                        this.setState({ 'email': value });
+                    }}
+	                />
+	                <ErrorMessage style={{ display: this.state.emailError, marginLeft: 20 }}>
+	                  Please enter a valid email address.
+	                </ErrorMessage>
+
+	                <Text style={styles.ftreDescription} allowFontScaling={true}>
+	                  Your phone number
+	                </Text>
+	                <TextInput
+                    ref={(el) => {
+                        this.inputRefs.phone = el;
+                    }}
+	                style={styles.textBox}
+	                value={this.state.phone}
+	                keyboardType="phone-pad"
+	                returnKeyType="done"
+	                onChangeText={(value) => {
+	                  AsyncStorage.setItem('phone', value);
+	                  this.setState({ 'phone': value });
+                    }}
+	                />
+	                <ErrorMessage style={{ display: this.state.phoneError, marginLeft: 20 }}>
+	                  Please enter a valid phone number.
 	                </ErrorMessage>
 
 	                <Text style={styles.ftreDescription} allowFontScaling={true}>
@@ -182,27 +227,36 @@ export default class SettingsScreen extends React.Component {
 	                </ErrorMessage>
 
 	                <Text style={styles.ftreDescription} allowFontScaling={true}>
-	                  Your e-mail
+	                  Gender
 	                </Text>
-	                <TextInput
+	                <RNPickerSelect
                     ref={(el) => {
-                        this.inputRefs.email = el;
+                        this.inputRefs.gender = el;
                     }}
-	                  style={styles.textBox}
-	                  value={this.state.email}
-	                  keyboardType="email-address"
-                    returnKeyType="next"
-                    enablesReturnKeyAutomatically
-                    onSubmitEditing={() => {
-                        this.inputRefs.pemail.focus();
+                    placeholder={{
+                        label: 'Select a gender',
+                        value: null,
                     }}
-                    onChangeText={(value) => {
-                    	AsyncStorage.setItem('email', value);
-                        this.setState({ 'email': value });
+                    items={[
+                    	{ label: 'Male', value: 'Male' },
+                    	{ label: 'Female', value: 'Female' },
+                    ]}
+                    onValueChange={(value) => {
+                    	AsyncStorage.setItem('gender', value);
+                        this.setState({ 'gender': value });
                     }}
-	                />
-	                <ErrorMessage style={{ display: this.state.emailError, marginLeft: 20 }}>
-	                  Please enter a valid email address.
+                    onUpArrow={() => {
+                        this.inputRefs.phone.focus();
+                    }}
+                    // onDownArrow={() => {
+                    //     this.inputRefs.picker2.togglePicker();
+                    // }}
+                    style={{inputIOS: [{color: 'black'}, styles.textBox]}}
+                    value={this.state.gender}
+                    hideIcon={true}
+                	/>
+	                <ErrorMessage style={{ display: this.state.genderError, marginLeft: 20 }}>
+	                  Please select a gender.
 	                </ErrorMessage>
 
 	                <Text style={styles.ftreDescription} allowFontScaling={true}>
@@ -228,59 +282,7 @@ export default class SettingsScreen extends React.Component {
 	                <ErrorMessage style={{ display: this.state.pemailError, marginLeft: 20 }}>
 	                  Please enter a valid email address.
 	                </ErrorMessage>
-
-	                <Text style={styles.ftreDescription} allowFontScaling={true}>
-	                  Your phone number
-	                </Text>
-	                <TextInput
-                    ref={(el) => {
-                        this.inputRefs.phone = el;
-                    }}
-	                style={styles.textBox}
-	                value={this.state.phone}
-	                keyboardType="phone-pad"
-	                returnKeyType="done"
-	                onChangeText={(value) => {
-	                  AsyncStorage.setItem('phone', value);
-	                  this.setState({ 'phone': value });
-                    }}
-	                />
-	                <ErrorMessage style={{ display: this.state.phoneError, marginLeft: 20 }}>
-	                  Please enter a valid phone number.
-	                </ErrorMessage>
-
-	                <Text style={styles.ftreDescription} allowFontScaling={true}>
-	                  Gender
-	                </Text>
-	                <RNPickerSelect
-                    ref={(el) => {
-                        this.inputRefs.gender = el;
-                    }}
-                    placeholder={{
-                        label: 'Select a gender',
-                        value: null,
-                    }}
-                    items={[
-                    	{ label: 'Male', value: 'male' },
-                    	{ label: 'Female', value: 'female' }
-                    ]}
-                    onValueChange={(value) => {
-                    	AsyncStorage.setItem('gender', value);
-                        this.setState({ 'gender': value });
-                    }}
-                    onUpArrow={() => {
-                        this.inputRefs.phone.focus();
-                    }}
-                    // onDownArrow={() => {
-                    //     this.inputRefs.picker2.togglePicker();
-                    // }}
-                    style={{inputIOS: [{color: 'black'}, styles.textBox]}}
-                    value={this.state.gender}
-                    hideIcon={true}
-                	/>
-	                <ErrorMessage style={{ display: this.state.genderError, marginLeft: 20 }}>
-	                  Please select a gender.
-	                </ErrorMessage>
+	                
 	              </KeyboardAvoidingView>
 	              </ScrollView>
 
@@ -297,12 +299,28 @@ export default class SettingsScreen extends React.Component {
         </View>
 
         <View style={styles.infoContainer}>
-          <Text style={styles.font}>Name</Text>
+          <Text style={styles.ftreDescription}>Name</Text>
           <Text style={styles.font}>{this.state.name}</Text>
         </View>
         <View style={styles.infoContainer}>
-          <Text style={styles.font}>Email</Text>
+          <Text style={styles.ftreDescription}>Email</Text>
           <Text style={styles.font}>{this.state.email}</Text>
+        </View>
+        <View style={styles.infoContainer}>
+          <Text style={styles.ftreDescription}>Phone Number</Text>
+          <Text style={styles.font}>{this.state.phone}</Text>
+        </View>
+        <View style={styles.infoContainer}>
+          <Text style={styles.ftreDescription}>Grade</Text>
+          <Text style={styles.font}>{this.state.grade}</Text>
+        </View>
+        <View style={styles.infoContainer}>
+          <Text style={styles.ftreDescription}>Gender</Text>
+          <Text style={styles.font}>{this.state.gender}</Text>
+        </View>
+        <View style={styles.infoContainer}>
+          <Text style={styles.ftreDescription}>Parent's Email</Text>
+          <Text style={styles.font}>{this.state.pemail}</Text>
         </View>
       </View>
     );
@@ -329,8 +347,6 @@ export default class SettingsScreen extends React.Component {
     (this.state.grade!=null) ? this.setState({gradeError: "none"}) : this.setState({gradeError: "flex"});
     (this.state.gender!=null) ? this.setState({genderError: "none"}) : this.setState({genderError: "flex"});
     // this.setState({Error: "flex"})
-    console.log(this.state.nameError);
-    console.log(this.validName(this.state.name));
     if((this.validName(this.state.name)) && (this.validEmail(this.state.email)) && (this.validEmail(this.state.pemail)) && (this.validPhone(this.state.phone)) && (this.state.grade!=null) && (this.state.gender!=null)){
     	this._handleExit();
 	}
@@ -364,7 +380,8 @@ const styles = StyleSheet.create({
   },
   font: {
     fontSize: 15,
-    textAlign: "left"
+    textAlign: "left",
+    marginHorizontal: 20
   },
   container: {
     flex: 1,
@@ -372,7 +389,9 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     backgroundColor: "#fdfdfd",
-    marginTop: 30
+    paddingBottom: 10,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: '#EDEDED',
   },
   ftreTitle: {
     color: "#823837",
@@ -385,7 +404,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginRight: 20,
     marginLeft: 20,
-    paddingTop: 10
+    paddingTop: 10,
+    fontWeight: "500",
   },
   ftreCloseIcon: {
     alignSelf: "flex-end",

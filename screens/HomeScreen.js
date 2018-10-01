@@ -148,9 +148,10 @@ const styles = StyleSheet.create({
   },
   getStartedText: {
     fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
+    color: '#823837',
     lineHeight: 24,
     textAlign: 'center',
+    fontWeight: "500",
   },
   tabBarInfoContainer: {
     position: 'absolute',
