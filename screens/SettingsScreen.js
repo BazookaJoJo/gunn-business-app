@@ -382,7 +382,7 @@ const styles = StyleSheet.create({
     flex: 0.15,
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "white",
+    backgroundColor: "#fdfdfd",
     padding: 10
   },
   ftreExitButtonContainer: {
@@ -393,7 +393,7 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   },
   ftreExitButtonText: {
-    color: "white",
+    color: "#fdfdfd",
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "center"
