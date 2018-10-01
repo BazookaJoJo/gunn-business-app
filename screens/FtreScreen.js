@@ -107,7 +107,7 @@ export default class FtreScreen extends Component {
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-ftreContainer:{
+  ftreContainer:{
 		backgroundColor:'#fdfdfd',
 		flex:1,
 		borderColor:'#823837',

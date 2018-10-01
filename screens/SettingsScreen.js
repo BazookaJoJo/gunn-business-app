@@ -113,7 +113,7 @@ export default class SettingsScreen extends React.Component {
 	                  Please enter the following information for us.
 	                </Text>
 	              </View>
-	              <View style={styles.ftreDescriptionContainer}>
+	              <ScrollView style={styles.ftreDescriptionContainer}>
 	                <Text style={styles.ftreDescription} allowFontScaling={true}>
 	                  Full Name
 	                </Text>
@@ -254,7 +254,7 @@ export default class SettingsScreen extends React.Component {
 	                <ErrorMessage style={{ display: this.state.genderError, marginLeft: 20 }}>
 	                  Please choose a gender.
 	                </ErrorMessage>
-	              </View>
+	              </ScrollView>
 
 	              <View style={styles.ftreExitContainer}>
 	                <TouchableHighlight onPress={this.onExitButton}>
@@ -282,7 +282,13 @@ export default class SettingsScreen extends React.Component {
   onExitButton = () => {
     //validate form
     // console.log(this.inputRefs);
+    this.setState({nameError: "flex"})
     this.setState({emailError: "flex"})
+    this.setState({pemailError: "flex"})
+    this.setState({phoneError: "flex"})
+    this.setState({gradeError: "flex"})
+    this.setState({genderError: "flex"})
+    // this.setState({Error: "flex"})
     // this.setModalVisible(!this.state.modalVisible);
   };
 
@@ -305,8 +311,8 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     borderWidth: 1,
     padding: 6,
-    marginTop: 8,
-    marginBottom: 0,
+    marginTop: 4,
+    marginBottom: 4,
     marginHorizontal: 20,
     borderRadius: 4
   },
@@ -352,7 +358,7 @@ const styles = StyleSheet.create({
   },
   ftreTitleContainer: {
     paddingTop: 30,
-    flex: 1,
+    flex: 0.1,
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center"
@@ -369,11 +375,11 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   ftreDescriptionContainer: {
-    flex: 6.5,
+    flex: 1000,
     marginTop: 0
   },
   ftreExitContainer: {
-    flex: 2,
+    flex: 1,
     justifyContent: "flex-start",
     alignItems: "center"
   },
