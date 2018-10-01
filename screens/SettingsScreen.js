@@ -6,6 +6,7 @@ import {
   Modal,
   View,
   ScrollView,
+  KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
   Text,
@@ -120,6 +121,7 @@ export default class SettingsScreen extends React.Component {
 	                </Text>
 	              </View>
 	              <ScrollView style={styles.ftreDescriptionContainer}>
+	              <KeyboardAvoidingView behavior="position" keyboardVerticalOffset={100} enabled>
 	                <Text style={styles.ftreDescription} allowFontScaling={true}>
 	                  Full Name
 	                </Text>
@@ -176,7 +178,7 @@ export default class SettingsScreen extends React.Component {
                     hideIcon={true}
                 	/>
 	                <ErrorMessage style={{ display: this.state.genderError, marginLeft: 20 }}>
-	                  Please choose a grade.
+	                  Please select a grade.
 	                </ErrorMessage>
 
 	                <Text style={styles.ftreDescription} allowFontScaling={true}>
@@ -277,8 +279,9 @@ export default class SettingsScreen extends React.Component {
                     hideIcon={true}
                 	/>
 	                <ErrorMessage style={{ display: this.state.genderError, marginLeft: 20 }}>
-	                  Please choose a gender.
+	                  Please select a gender.
 	                </ErrorMessage>
+	              </KeyboardAvoidingView>
 	              </ScrollView>
 
 	              <View style={styles.ftreExitContainer}>
