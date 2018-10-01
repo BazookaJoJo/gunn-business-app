@@ -67,7 +67,7 @@ export default class FtreScreen extends Component {
                 Full Name
               </Text>
               <TextInput
-                style={{height:30, borderColor: 'gray', borderWidth: 1, marginHorizontal: 20}}
+                style={{height:30, borderColor: 'gray', borderWidth: 1, marginHorizontal: 20, borderRadius: 4px}}
                 onChangeText={this.setName}
               />
               <Text>
@@ -78,7 +78,7 @@ export default class FtreScreen extends Component {
                 E-mail
               </Text>
               <TextInput
-                style={{height:30, borderColor: 'gray', borderWidth: 1, marginHorizontal: 20}}
+                style={{height:30, borderColor: 'gray', borderWidth: 1, marginHorizontal: 20, borderRadius: 4px}}
                 onChangeText={this.setEmail}
               />
               <Text>
