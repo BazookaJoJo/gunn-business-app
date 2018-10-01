@@ -30,6 +30,7 @@ export default class SettingsScreen extends React.Component {
       )
     };
   };
+  //
   _handleExit = () => {
     AsyncStorage.setItem("modalVisible", JSON.stringify(false));
     this.setState({ modalVisible: JSON.stringify(false) });
@@ -45,14 +46,18 @@ export default class SettingsScreen extends React.Component {
     this.state = {
       modalVisible: JSON.stringify(false),
       title: "Welcome to the Gunn Business App!",
-      name: "Name",
-      email: "Email",
+      name: "",
+      email: "",
       pagekey: "firstTimeSetup",
       nameError: "none",
       emailError: "none",
       pemailError: "none",
       phoneError: "none",
       genderError: "none",
+      grade: "",
+      gender: "",
+      pemail: "",
+      phone: 0,
     };
   }
 
@@ -76,9 +81,9 @@ export default class SettingsScreen extends React.Component {
       }
     );
     AsyncStorage.getItem("name").then(value => this.setState({ name: value }));
-    AsyncStorage.getItem("email").then(value =>
-      this.setState({ email: value })
-    );
+    AsyncStorage.getItem("email").then(value => this.setState({ email: value }));
+    AsyncStorage.getItem("pemail").then(value => this.setState({ pemail: value }));
+    AsyncStorage.getItem("phone").then(value => this.setState({ phone: value }));
     AsyncStorage.getItem("modalVisible").then(value =>
       this.setState({ modalVisible: value })
     );
@@ -128,7 +133,12 @@ export default class SettingsScreen extends React.Component {
                     onSubmitEditing={() => {
                         this.inputRefs.grade.togglePicker();
                     }}
+                    onChangeText={(value) => {
+                    	AsyncStorage.setItem('name', value);
+                        this.setState({ 'name': value });
+                    }}
 	                />
+
 	                <ErrorMessage style={{ display: this.state.nameError, marginLeft: 20 }}>
 	                  Please enter your full name.
 	                </ErrorMessage>
@@ -151,7 +161,8 @@ export default class SettingsScreen extends React.Component {
                     	{ label: '12', value: '12' }
                     ]}
                     onValueChange={(value) => {
-                        this.setState({ grade: value });
+                    	AsyncStorage.setItem('grade', value);
+                        this.setState({ 'grade': value });
                     }}
                     onUpArrow={() => {
                         this.inputRefs.name.focus();
@@ -182,6 +193,10 @@ export default class SettingsScreen extends React.Component {
                     onSubmitEditing={() => {
                         this.inputRefs.pemail.focus();
                     }}
+                    onChangeText={(value) => {
+                    	AsyncStorage.setItem('email', value);
+                        this.setState({ 'email': value });
+                    }}
 	                />
 	                <ErrorMessage style={{ display: this.state.emailError, marginLeft: 20 }}>
 	                  Please enter a valid email address.
@@ -202,6 +217,10 @@ export default class SettingsScreen extends React.Component {
                     onSubmitEditing={() => {
                         this.inputRefs.phone.focus();
                     }}
+                    onChangeText={(value) => {
+                    	AsyncStorage.setItem('pemail', value);
+                        this.setState({ 'pemail': value });
+                    }}
 	                />
 	                <ErrorMessage style={{ display: this.state.pemailError, marginLeft: 20 }}>
 	                  Please enter a valid email address.
@@ -214,10 +233,14 @@ export default class SettingsScreen extends React.Component {
                     ref={(el) => {
                         this.inputRefs.phone = el;
                     }}
-	                  style={styles.textBox}
-	                  value={this.state.phone}
-	                  keyboardType="phone-pad"
-                    returnKeyType="done"
+	                style={styles.textBox}
+	                value={this.state.phone}
+	                keyboardType="phone-pad"
+	                returnKeyType="done"
+	                onChangeText={(value) => {
+	                  AsyncStorage.setItem('phone', value);
+	                  this.setState({ 'phone': value });
+                    }}
 	                />
 	                <ErrorMessage style={{ display: this.state.phoneError, marginLeft: 20 }}>
 	                  Please enter a valid phone number.
@@ -239,7 +262,8 @@ export default class SettingsScreen extends React.Component {
                     	{ label: 'Female', value: 'female' }
                     ]}
                     onValueChange={(value) => {
-                        this.setState({ gender: value });
+                    	AsyncStorage.setItem('gender', value);
+                        this.setState({ 'gender': value });
                     }}
                     onUpArrow={() => {
                         this.inputRefs.phone.focus();
@@ -279,28 +303,32 @@ export default class SettingsScreen extends React.Component {
       </View>
     );
   }
-  onExitButton = () => {
-    //validate form
-    // console.log(this.inputRefs);
-    this.setState({nameError: "flex"})
-    this.setState({emailError: "flex"})
-    this.setState({pemailError: "flex"})
-    this.setState({phoneError: "flex"})
-    this.setState({gradeError: "flex"})
-    this.setState({genderError: "flex"})
-    // this.setState({Error: "flex"})
-    // this.setModalVisible(!this.state.modalVisible);
-  };
-
   validName = name => {
-    var name = /^([a-zA-Z]{2,}\s[a-zA-z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)$/;
+    var re = /^([a-zA-Z]{2,}\s[a-zA-z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)$/;
     return re.test(name);
   };
-
+  validPhone = phone => {
+    var re = /^[0]?[0-9]\d{9}$/;
+    return re.test(phone);
+  };
   validEmail = email => {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
   };
+  onExitButton = () => {
+    //validate form
+    // console.log(this.inputRefs);
+    (this.validName(this.state.name)) ? this.setState({nameError: "none"}) : this.setState({nameError: "flex"});
+    (this.validEmail(this.state.email)) ? this.setState({emailError: "none"}) : this.setState({emailError: "flex"});
+    (this.validEmail(this.state.pemail)) ? this.setState({pemailError: "none"}) : this.setState({pemailError: "flex"});
+    (this.validPhone(this.state.phone)) ? this.setState({phoneError: "none"}) : this.setState({phoneError: "flex"});
+    (this.state.grade!=null) ? this.setState({gradeError: "none"}) : this.setState({gradeError: "flex"});
+    (this.state.gender!=null) ? this.setState({genderError: "none"}) : this.setState({genderError: "flex"});
+    // this.setState({Error: "flex"})
+    // this.setModalVisible(!this.state.modalVisible);
+  };
+
+  
 }
 //////
 import { StyleSheet } from "react-native";
