@@ -276,7 +276,8 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 8,
     marginHorizontal: 20,
-    borderRadius: 4
+    borderRadius: 4,
+    color: "black"
   },
   textBox: {
     height: 30,
