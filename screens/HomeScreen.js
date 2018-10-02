@@ -56,10 +56,10 @@ export default class HomeScreen extends React.Component {
             </TouchableOpacity>
           </View>*/}
 
-          <Switch style={styles.switchStyle}
+          {/*<Switch style={styles.switchStyle}
             onValueChange={this._handleToggleSwitch}
             value={this.state.switchValue}
-          />
+          />*/}
 
         </ScrollView>
       </View>

@@ -6,7 +6,7 @@
     "privacy": "public",
     "sdkVersion": "29.0.0",
     "platforms": ["ios", "android"],
-    "version": "1.0.4",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/images/gunnbusiness.png",
     "splash": {
@@ -21,7 +21,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "com.gunnbusiness.gunnbusiness",
       "infoPlist": {
         "LSApplicationQueriesSchemes": ["fb", "instagram"]
