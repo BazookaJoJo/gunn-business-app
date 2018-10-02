@@ -115,12 +115,36 @@ export default class LinksScreen extends React.Component {
             </View>
           </View>
         </Touchable>
+        <Touchable style={styles.optionTouchable}
+          id="Feedback"
+          background={Touchable.Ripple('#ccc', false)}
+          onPress={this._handleFeedback}>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={styles.optionIconContainer}>
+              <Image
+                source={require('../assets/images/questions.png')}
+                resizeMode="contain"
+                fadeDuration={0}
+                style={{ width: 20, height: 20, marginTop: 1 }}
+              />
+            </View>
+            <View style={styles.optionTextContainer}>
+              <Text style={styles.optionText}>
+                Give us feedback on how to improve our app!
+              </Text>
+            </View>
+          </View>
+        </Touchable>
       </View>
     );
   }
 
   _handleGunnBusinessWebsite = () => {
     WebBrowser.openBrowserAsync('https://www.gunnbusiness.com');
+  };
+
+  _handleFeedback = () => {
+    WebBrowser.openBrowserAsync('https://docs.google.com/forms/u/2/d/e/1FAIpQLSdj9bcyXAxgDv9YXWhWgnb4pCdHszQWdNS8CYu2UMOtX1ujJw/viewform');
   };
 
   _handleFacebookGroup = () => {
