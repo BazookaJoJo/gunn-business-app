@@ -1,0 +1,34 @@
+{
+  "expo": {
+    "name": "Gunn Business",
+    "description": "A companion app for the Gunn Business Club at Gunn High School",
+    "slug": "gunn-business",
+    "privacy": "public",
+    "sdkVersion": "29.0.0",
+    "platforms": ["ios", "android"],
+    "version": "1.0.4",
+    "orientation": "portrait",
+    "icon": "./assets/images/gunnbusiness.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.gunnbusiness.gunnbusiness",
+      "infoPlist": {
+        "LSApplicationQueriesSchemes": ["fb", "instagram"]
+      }
+    },
+    "notification": {
+      "icon": "./assets/images/gunnbusiness.png"
+    }
+  }
+}
